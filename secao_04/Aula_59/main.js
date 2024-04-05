@@ -3,6 +3,15 @@ function Calculadora() {
 
     this.inicia = () => {
         this.capituraCliques();
+        this.capturaEnter();
+    };
+
+    this.capturaEnter = () => {
+        this.display.addEventListener('keypress', e => {
+            if (e.key === 'Enter') {
+            this.criaConta();
+            }
+        });
     };
 
     this.capituraCliques = () => {
@@ -21,7 +30,7 @@ function Calculadora() {
         try {
             conta = eval(conta);
 
-            if(!conta) {
+            if (!conta) {
                 alert('Conta Inválida');
                 return;
             }
@@ -32,8 +41,11 @@ function Calculadora() {
             return;
         }
     }
-    
-    this.addNumDisplay = el => this.display.value += el.innerText;
+
+    this.addNumDisplay = el => {
+        this.display.value += el.innerText;
+        this.display.focus();
+    }
     this.removeUm = () => this.display.value = this.display.value.slice(0, -1);
     this.clearDisplay = () => this.display.value = ''
 
